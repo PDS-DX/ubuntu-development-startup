@@ -9,9 +9,10 @@ if is_installed dotnet && dotnet --list-sdks | grep -q "^${DOTNET_CHANNEL}"; the
 fi
 
 SUITE="$(lts_suite)"
+VERSION="$(lsb_release -rs)"
 
 add_apt_repo_deb822 "microsoft" \
-    "https://packages.microsoft.com/ubuntu/${SUITE}/prod" \
+    "https://packages.microsoft.com/ubuntu/${VERSION}/prod" \
     "https://packages.microsoft.com/keys/microsoft.asc" \
     "$SUITE" \
     "main"
