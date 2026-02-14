@@ -73,9 +73,11 @@ add_bashrc_block "fd" 'if command -v fdfind &>/dev/null && ! command -v fd &>/de
     alias fd=fdfind
 fi'
 
+source ~/.bashrc
+
 if ! $CHANGED; then
     log_info "Shell config already up to date"
     exit 2
 fi
 
-log_info "Shell config updated — run 'source ~/.bashrc' or open a new terminal"
+log_info "Shell config updated"
