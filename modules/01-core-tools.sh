@@ -26,6 +26,8 @@ PACKAGES=(
     ca-certificates
     gnupg
     lsb-release
+    flatpak
+    libfuse2t64
 )
 
 # Check which packages are missing
