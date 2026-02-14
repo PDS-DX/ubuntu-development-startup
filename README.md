@@ -1,5 +1,5 @@
 # ubuntu-development-startup
-This is meant as a quickstart automation library to standup a Ubuntu VM using ARM64 hardware. The idea is to provide improved portability over cloned UTM images.
+This is meant as a quickstart automation library to standup a Ubuntu VM using ARM64 hardware. The idea is to provide improved portability over cloned UTM images. This thing is gross but it works for my current purpose.
 
 # Ubuntu Server to Desktop conversion script
 Due to compatibility issues with Ubuntu 25.10 Desktop. The preferred ISO to use is Ubuntu 24.04 Server for ARM64 while installing gnome desktop on top of it.
