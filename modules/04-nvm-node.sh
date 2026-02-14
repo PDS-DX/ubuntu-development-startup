@@ -23,14 +23,14 @@ fi
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
 
 # Install Node.js LTS
-if nvm ls "$NODE_LTS_VERSION" &>/dev/null; then
-    log_info "Node.js ${NODE_LTS_VERSION} already installed via nvm"
+if nvm ls "$NODE_VERSION" &>/dev/null; then
+    log_info "Node.js ${NODE_VERSION} already installed via nvm"
 else
-    log_info "Installing Node.js ${NODE_LTS_VERSION} via nvm..."
-    nvm install "$NODE_LTS_VERSION"
+    log_info "Installing Node.js ${NODE_VERSION} via nvm..."
+    nvm install "$NODE_VERSION"
 fi
 
-nvm alias default "$NODE_LTS_VERSION"
+nvm alias default "$NODE_VERSION"
 nvm use default
 
 # Install global npm packages
