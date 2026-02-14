@@ -3,7 +3,7 @@
 
 set -euo pipefail
 
-if is_installed obsidian || is_apt_installed obsidian; then
+if is_flatpak_installed Obsidian; then
     log_info "Obsidian already installed"
     exit 2
 fi
@@ -11,13 +11,8 @@ fi
 TMPDIR="$(mktemp -d)"
 trap 'rm -rf "$TMPDIR"' RETURN
 
-# Obsidian .deb naming uses amd64/arm64
-DEB_URL="https://github.com/obsidianmd/obsidian-releases/releases/download/v${OBSIDIAN_VERSION}/obsidian_${OBSIDIAN_VERSION}_${ARCH}.deb"
-
-log_info "Downloading Obsidian v${OBSIDIAN_VERSION}..."
-curl -fsSL "$DEB_URL" -o "${TMPDIR}/obsidian.deb"
-
 log_info "Installing Obsidian..."
-sudo apt-get install -y -qq "${TMPDIR}/obsidian.deb"
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub md.obsidian.Obsidian
 
 log_info "Obsidian installed"
