@@ -69,6 +69,10 @@ is_snap_installed() {
     snap list "$1" 2>/dev/null | grep -q "^$1"
 }
 
+is_flatpak_installed() {
+    flatpak list --columns=name 2>/dev/null | grep -q "$1"
+}
+
 # --- APT helpers ---
 
 apt_update_if_needed() {
@@ -85,7 +89,7 @@ apt_update_if_needed() {
 }
 
 apt_install() {
-    sudo apt-get install -y -qq "$@"
+    sudo apt-get install -y "$@"
 }
 
 # --- DEB822 APT repo helper ---
