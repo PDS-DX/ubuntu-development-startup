@@ -60,8 +60,4 @@ StartupWMClass=Postman
 StartupNotify=true
 EOF
 
-# sudo apt update && apt upgrade -y
-
-# curl -o- "https://dl-cli.pstmn.io/install/unix.sh" | sh
-
 log_info "Postman installed successfully"
