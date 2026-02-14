@@ -4,10 +4,10 @@
 set -euo pipefail
 
 INSTALL_DIR="${HOME}/.local/share/JetBrains/Toolbox"
-TOOLBOX_BIN="${INSTALL_DIR}/bin/jetbrains-toolbox"
+TOOLBOX_BIN="${INSTALL_DIR}"
 
 if [[ -x "$TOOLBOX_BIN" ]]; then
-    log_info "JetBrains Toolbox already installed"
+    log_info "JetBrains Toolbox already installed at $TOOLBOX_BIN"
     exit 2
 fi
 
@@ -21,16 +21,21 @@ esac
 TMPDIR="$(mktemp -d)"
 trap 'rm -rf "$TMPDIR"' RETURN
 
-URL="https://download.jetbrains.com/toolbox/jetbrains-toolbox-${JETBRAINS_TOOLBOX_VERSION}-linux-${JB_ARCH}.tar.gz"
+URL="https://download.jetbrains.com/toolbox/jetbrains-toolbox-3.2.0.65851-arm64.tar.gz"
 
 log_info "Downloading JetBrains Toolbox v${JETBRAINS_TOOLBOX_VERSION}..."
 curl -fsSL "$URL" -o "${TMPDIR}/toolbox.tar.gz"
 
 log_info "Extracting to ${INSTALL_DIR}..."
 mkdir -p "$INSTALL_DIR/bin"
-tar xzf "${TMPDIR}/toolbox.tar.gz" -C "$TMPDIR"
-cp "${TMPDIR}"/jetbrains-toolbox-*/jetbrains-toolbox "${TOOLBOX_BIN}"
+echo "Temporary dir: ${TMPDIR}"
+ls -la "${TMPDIR}"
+tar -xzf "${TMPDIR}/toolbox.tar.gz" -C "$TMPDIR"
+cp -r "${TMPDIR}"/jetbrains-toolbox-*/bin/ "${TOOLBOX_BIN}"
 chmod +x "$TOOLBOX_BIN"
 
+echo 'export PATH=$PATH:$HOME/.local/share/JetBrains/Toolbox/bin' >> ~/.bashrc
+source ~/.bashrc
+
 log_info "JetBrains Toolbox installed to ${TOOLBOX_BIN}"
-log_info "Run 'jetbrains-toolbox' to launch (after adding ~/.local/share/JetBrains/Toolbox/bin to PATH)"
+log_info "Run 'jetbrains-toolbox' to launch. This will create the desktop symlink."
