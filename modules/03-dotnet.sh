@@ -8,15 +8,21 @@ if is_installed dotnet && dotnet --list-sdks | grep -q "^${DOTNET_CHANNEL}"; the
     exit 2
 fi
 
-SUITE="$(lts_suite)"
-VERSION="$(lsb_release -rs)"
+curl -sSL https://dot.net/v1/dotnet-install.sh -o dotnet-install.sh
 
-add_apt_repo_deb822 "microsoft" \
-    "https://packages.microsoft.com/ubuntu/${VERSION}/prod" \
-    "https://packages.microsoft.com/keys/microsoft.asc" \
-    "$SUITE" \
-    "main"
+bash dotnet-install.sh --channel 10.0
+bash dotnet-install.sh --channel 9.0
+bash dotnet-install.sh --channel 8.0
 
-apt_install "dotnet-sdk-${DOTNET_CHANNEL}"
+rm dotnet-install.sh
 
-log_info ".NET SDK installed: $(dotnet --version)"
+# 1. Add the installation directory to the path
+echo 'export DOTNET_ROOT=$HOME/.dotnet' >> ~/.bashrc
+
+# 2. Add the dotnet tool to the system PATH
+echo 'export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools' >> ~/.bashrc
+
+# 3. Apply changes to the current terminal
+source ~/.bashrc
+
+log_info ".NET SDKs installed: $(dotnet --list-sdks)"
