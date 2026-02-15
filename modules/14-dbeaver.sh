@@ -16,6 +16,7 @@ add_apt_repo_deb822 "dbeaver" \
     "/" \
     ""
 
-apt_install dbeaver-ce
+apt_update_if_needed
+sudo apt install dbeaver-ce
 
 log_info "DBeaver installed"
