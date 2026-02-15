@@ -16,6 +16,7 @@ add_apt_repo_deb822 "github-cli" \
     "stable" \
     "main"
 
-apt_install gh
+apt_update_if_needed
+sudo apt install gh
 
 log_info "GitHub CLI installed: $(gh --version | head -1)"
