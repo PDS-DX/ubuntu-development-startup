@@ -88,10 +88,6 @@ apt_update_if_needed() {
     fi
 }
 
-apt_install() {
-    sudo apt-get install -y "$@"
-}
-
 # --- DEB822 APT repo helper ---
 # Adds an APT repo using modern .sources format with GPG key in /usr/share/keyrings/
 #
