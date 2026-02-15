@@ -21,7 +21,8 @@ add_apt_repo_deb822 "docker" \
     "$SUITE" \
     "stable"
 
-apt_install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+apt_update_if_needed
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Add user to docker group
 sudo usermod -aG docker "$USER"
