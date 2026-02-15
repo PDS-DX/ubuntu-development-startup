@@ -16,6 +16,7 @@ add_apt_repo_deb822 "brave-browser" \
     "stable" \
     "main"
 
-apt_install brave-browser
+apt_update_if_needed
+sudo apt install brave-browser
 
 log_info "Brave browser installed"
