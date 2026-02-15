@@ -24,6 +24,7 @@ Architectures: amd64,arm64,armhf
 Signed-By: /usr/share/keyrings/microsoft.gpg
 EOF
 
-apt update && apt_install code
+apt_update_if_needed
+sudo apt install code
 
 log_info "VS Code installed: $(code --version | head -1)"
