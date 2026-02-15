@@ -12,7 +12,6 @@ TMPDIR="$(mktemp -d)"
 trap 'rm -rf "$TMPDIR"' RETURN
 
 log_info "Installing Obsidian..."
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub md.obsidian.Obsidian
 
 log_info "Obsidian installed"
