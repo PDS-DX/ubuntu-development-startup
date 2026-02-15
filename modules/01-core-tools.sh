@@ -45,6 +45,10 @@ fi
 
 log_info "Installing ${#MISSING[@]} core packages: ${MISSING[*]}"
 apt_update_if_needed
-apt_install "${MISSING[@]}"
+sudo apt install "${MISSING[@]}"
+
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+source ~/.bashrc
 
 log_info "Core tools installed successfully"
